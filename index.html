@@ -532,7 +532,7 @@
                 </div>
 
                 <div class="student-counter">
-                    <span id="studentCount">Student 1 of 5 | Academic: 0/3 | Non-Academic: 0/2</span>
+                    <span id="studentCount">Student 1 of 5</span>
                 </div>
 
                 <div class="section-title">Student Nomination</div>
@@ -639,7 +639,7 @@
             <div class="content thank-you">
                 <div class="checkmark">✓</div>
                 <h2>Thank You!</h2>
-                <p>Thank you for submitting student details! We appreciate your support in recognizing young achievers at Career Uttsav ✨</p>
+                <p>Thank you for submitting this student's details! We appreciate your support in recognizing young achievers at Career Uttsav ✨</p>
                 <p>Your nomination has been successfully submitted to our database. We have received details for <strong><span id="finalCount">0</span> students</strong> from your institution.</p>
                 <p>A confirmation will be sent to <strong><span id="confirmEmail"></span></strong></p>
                 
@@ -658,20 +658,6 @@
         let institutionData = null;
         let students = [];
         const MAX_STUDENTS = 5;
-        const MIN_STUDENTS = 1;
-        const MAX_ACADEMICS = 3;
-        const MAX_NON_ACADEMICS = 2;
-
-        // Category validation helper
-        function getCategoryCounts() {
-            const academics = students.filter(s => 
-                ['Science', 'Commerce', 'Arts'].includes(s.category)
-            ).length;
-            const nonAcademics = students.filter(s => 
-                ['Sports', 'Music', 'Dance', 'Others'].includes(s.category)
-            ).length;
-            return { academics, nonAcademics };
-        }
 
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
@@ -715,34 +701,17 @@
             
             // Only save if there's data in the form
             if (studentName.trim() !== '') {
-                const category = document.getElementById('category').value;
-                const counts = getCategoryCounts();
-                
-                // Check category limits
-                const isAcademic = ['Science', 'Commerce', 'Arts'].includes(category);
-                const isNonAcademic = ['Sports', 'Music', 'Dance', 'Others'].includes(category);
-                
-                if (isAcademic && counts.academics >= MAX_ACADEMICS) {
-                    alert(`Maximum ${MAX_ACADEMICS} students from Academic categories (Science, Commerce, Arts) can be nominated. You have already added ${counts.academics}.`);
-                    return false;
-                }
-                
-                if (isNonAcademic && counts.nonAcademics >= MAX_NON_ACADEMICS) {
-                    alert(`Maximum ${MAX_NON_ACADEMICS} students from Non-Academic categories (Sports, Music, Dance, Others) can be nominated. You have already added ${counts.nonAcademics}.`);
-                    return false;
-                }
-                
                 // Check if student already exists to avoid duplicates
                 const existingStudent = students.find(s => 
                     s.name === studentName && 
-                    s.category === category
+                    s.category === document.getElementById('category').value
                 );
                 
                 if (!existingStudent) {
                     const student = {
                         name: studentName,
                         gender: document.getElementById('gender').value,
-                        category: category,
+                        category: document.getElementById('category').value,
                         subjectCombination: document.getElementById('subjectCombination').value,
                         grade10Percentage: document.getElementById('grade10Percentage').value,
                         grade12Percentage: document.getElementById('grade12Percentage').value,
@@ -789,27 +758,10 @@
                 return;
             }
             
-            const category = document.getElementById('category').value;
-            const counts = getCategoryCounts();
-            
-            // Check category limits
-            const isAcademic = ['Science', 'Commerce', 'Arts'].includes(category);
-            const isNonAcademic = ['Sports', 'Music', 'Dance', 'Others'].includes(category);
-            
-            if (isAcademic && counts.academics >= MAX_ACADEMICS) {
-                alert(`Maximum ${MAX_ACADEMICS} students from Academic categories (Science, Commerce, Arts) can be nominated. You have already added ${counts.academics}.`);
-                return;
-            }
-            
-            if (isNonAcademic && counts.nonAcademics >= MAX_NON_ACADEMICS) {
-                alert(`Maximum ${MAX_NON_ACADEMICS} students from Non-Academic categories (Sports, Music, Dance, Others) can be nominated. You have already added ${counts.nonAcademics}.`);
-                return;
-            }
-            
             const student = {
                 name: document.getElementById('studentName').value,
                 gender: document.getElementById('gender').value,
-                category: category,
+                category: document.getElementById('category').value,
                 subjectCombination: document.getElementById('subjectCombination').value,
                 grade10Percentage: document.getElementById('grade10Percentage').value,
                 grade12Percentage: document.getElementById('grade12Percentage').value,
@@ -827,8 +779,7 @@
             updateStudentCounter();
             
             // Show message
-            const newCounts = getCategoryCounts();
-            alert(`Student ${students.length} added successfully!\n\nCurrent count:\n- Academic: ${newCounts.academics}/${MAX_ACADEMICS}\n- Non-Academic: ${newCounts.nonAcademics}/${MAX_NON_ACADEMICS}`);
+            alert(`Student ${students.length} added successfully!`);
             
             // If max reached, go to review
             if (students.length >= MAX_STUDENTS) {
@@ -840,10 +791,9 @@
         // Update student counter
         function updateStudentCounter() {
             const count = students.length + 1;
-            const counts = getCategoryCounts();
             
             document.getElementById('studentCount').textContent = 
-                `Student ${count} of ${MAX_STUDENTS} | Academic: ${counts.academics}/${MAX_ACADEMICS} | Non-Academic: ${counts.nonAcademics}/${MAX_NON_ACADEMICS}`;
+                `Student ${count} of ${MAX_STUDENTS}`;
             
             if (students.length >= MAX_STUDENTS) {
                 document.getElementById('addAnotherBtn').disabled = true;
