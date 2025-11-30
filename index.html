@@ -478,7 +478,7 @@
                         <li>Achievements mentioned must be <strong>recent</strong>.</li>
                         <li>The <strong>last date for submission is 4th December 2025</strong>. Incomplete or late submissions will not be considered.</li>
                         <li>The decision of the Career Uttsav Jury regarding the selection of deserving winners will be <strong>final</strong>.</li>
-                        <li>All shortlisted nominees must be present at the venue at least <strong>45 minutes before</strong> their allotted time slot. The student must be accompanied by either their parent or teacher.<strong>ID Card is a MUST. <strong></strong></strong></li>
+                        <li>All shortlisted nominees must be present at the venue at least <strong>45 minutes before</strong> their allotted time slot. The student must be accompanied by either their parent or teacher. <strong>ID Card is a MUST.</strong></li>
                         <li>For any further details, please contact the Career Uttsav Team at 📞 <strong>+91-9035150139</strong> or ✉️ <strong>info@careeruttsav.in</strong></li>
                     </ol>
                 </div>
@@ -698,25 +698,40 @@
         // Save current student form data
         function saveCurrentStudent() {
             const studentName = document.getElementById('studentName').value;
+            const gender = document.getElementById('gender').value;
+            const category = document.getElementById('category').value;
+            const subjectCombination = document.getElementById('subjectCombination').value;
+            const grade10Percentage = document.getElementById('grade10Percentage').value;
+            const grade12Percentage = document.getElementById('grade12Percentage').value;
+            const achievements = document.getElementById('achievements').value;
+            const recognition = document.getElementById('recognition').value;
             
-            // Only save if there's data in the form
-            if (studentName.trim() !== '') {
+            // Only save if there's data in the form and all required fields are filled
+            if (studentName.trim() !== '' && 
+                gender !== '' && 
+                category !== '' && 
+                subjectCombination.trim() !== '' && 
+                grade10Percentage !== '' && 
+                grade12Percentage !== '' && 
+                achievements.trim() !== '' && 
+                recognition.trim() !== '') {
+                
                 // Check if student already exists to avoid duplicates
                 const existingStudent = students.find(s => 
                     s.name === studentName && 
-                    s.category === document.getElementById('category').value
+                    s.category === category
                 );
                 
                 if (!existingStudent) {
                     const student = {
                         name: studentName,
-                        gender: document.getElementById('gender').value,
-                        category: document.getElementById('category').value,
-                        subjectCombination: document.getElementById('subjectCombination').value,
-                        grade10Percentage: document.getElementById('grade10Percentage').value,
-                        grade12Percentage: document.getElementById('grade12Percentage').value,
-                        achievements: document.getElementById('achievements').value,
-                        recognition: document.getElementById('recognition').value
+                        gender: gender,
+                        category: category,
+                        subjectCombination: subjectCombination,
+                        grade10Percentage: grade10Percentage,
+                        grade12Percentage: grade12Percentage,
+                        achievements: achievements,
+                        recognition: recognition
                     };
                     
                     students.push(student);
@@ -859,119 +874,121 @@
                 <div class="student-card">
                     <h4>Student ${index + 1}: ${student.name}</h4>
                     <div class="summary-item">
-                    <span class="summary-label">Gender:</span>
-                    <span class="summary-value">${student.gender}</span>
+                        <span class="summary-label">Gender:</span>
+                        <span class="summary-value">${student.gender}</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Category:</span>
+                        <span class="summary-value">${student.category}</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Subject Combination:</span>
+                        <span class="summary-value">${student.subjectCombination}</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Grade 10 Percentage:</span>
+                        <span class="summary-value">${student.grade10Percentage}%</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Expected Grade 12 Percentage:</span>
+                        <span class="summary-value">${student.grade12Percentage}%</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Achievements:</span>
+                        <span class="summary-value">${student.achievements}</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Recognition:</span>
+                        <span class="summary-value">${student.recognition}</span>
+                    </div>
                 </div>
-                <div class="summary-item">
-                    <span class="summary-label">Category:</span>
-                    <span class="summary-value">${student.category}</span>
-                </div>
-                <div class="summary-item">
-                    <span class="summary-label">Subject Combination:</span>
-                    <span class="summary-value">${student.subjectCombination}</span>
-                </div>
-                <div class="summary-item">
-                    <span class="summary-label">Grade 10 Percentage:</span>
-                    <span class="summary-value">${student.grade10Percentage}%</span>
-                </div>
-                <div class="summary-item">
-                    <span class="summary-label">Expected Grade 12 Percentage:</span>
-                    <span class="summary-value">${student.grade12Percentage}%</span>
-                </div>
-                <div class="summary-item">
-                    <span class="summary-label">Achievements:</span>
-                    <span class="summary-value">${student.achievements}</span>
-                </div>
-                <div class="summary-item">
-                    <span class="summary-label">Recognition:</span>
-                    <span class="summary-value">${student.recognition}</span>
-                </div>
-            </div>
-        `).join('');
-    }
-
-    // Submit all
-    async function submitAll() {
-        if (students.length === 0) {
-            alert('No students to submit!');
-            return;
+            `).join('');
         }
-        
-        // Show loading state
-        const submitBtn = event.target;
-        const originalText = submitBtn.textContent;
-        submitBtn.textContent = 'Submitting...';
-        submitBtn.disabled = true;
-        
-        // Prepare final submission data
-        const submission = {
-            institution: institutionData,
-            students: students,
-            submittedAt: new Date().toISOString()
-        };
-        
-        try {
-            // Send to Google Sheets
-            const response = await fetch(GOOGLE_SCRIPT_URL, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(submission)
-            });
-            
-            // Note: no-cors mode doesn't return response data, but submission is successful
-            console.log('Submission sent to Google Sheets');
-            
-            // Update thank you page
-            document.getElementById('finalCount').textContent = students.length;
-            document.getElementById('confirmEmail').textContent = institutionData.email;
-            
-            // Clear localStorage after successful submission
-            localStorage.removeItem('careerUttsavData');
-            
-            // Go to success page
-            goToPage(4);
-            
-        } catch (error) {
-            console.error('Submission error:', error);
-            
-            // Even if there's an error, the data is usually saved
-            // Show success page but mention to verify
-            alert('Submission sent! If you want to be sure, you can download a backup copy.');
-            document.getElementById('finalCount').textContent = students.length;
-            document.getElementById('confirmEmail').textContent = institutionData.email;
-            
-            // Clear localStorage even if error
-            localStorage.removeItem('careerUttsavData');
-            
-            goToPage(4);
-        } finally {
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-        }
-    }
 
-    // Page navigation
-    function goToPage(pageNum) {
-        document.querySelectorAll('.page').forEach(page => {
-            page.classList.remove('active');
-        });
-        document.getElementById(`page${pageNum}`).classList.add('active');
-        updateProgress(pageNum);
-        window.scrollTo(0, 0);
-    }
-
-    // Update progress bar
-    function updateProgress(currentPage = 1) {
-        document.querySelectorAll('.step').forEach((step, index) => {
-            step.classList.remove('active', 'completed');
-            if (index + 1 < currentPage) {
-                step.classList.add('completed');
-            } else if (index + 1 === currentPage) {
-                step.classList.add('active');
+        // Submit all
+        async function submitAll() {
+            if (students.length === 0) {
+                alert('No students to submit!');
+                return;
             }
-        });
-    }
-</script>
+            
+            // Show loading state
+            const submitBtn = event.target;
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Submitting...';
+            submitBtn.disabled = true;
+            
+            // Prepare final submission data
+            const submission = {
+                institution: institutionData,
+                students: students,
+                submittedAt: new Date().toISOString()
+            };
+            
+            try {
+                // Send to Google Sheets
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(submission)
+                });
+                
+                // Note: no-cors mode doesn't return response data, but submission is successful
+                console.log('Submission sent to Google Sheets');
+                
+                // Update thank you page
+                document.getElementById('finalCount').textContent = students.length;
+                document.getElementById('confirmEmail').textContent = institutionData.email;
+                
+                // Clear localStorage after successful submission
+                localStorage.removeItem('careerUttsavData');
+                
+                // Go to success page
+                goToPage(4);
+                
+            } catch (error) {
+                console.error('Submission error:', error);
+                
+                // Even if there's an error, the data is usually saved
+                // Show success page but mention to verify
+                alert('Submission sent! If you want to be sure, you can download a backup copy.');
+                document.getElementById('finalCount').textContent = students.length;
+                document.getElementById('confirmEmail').textContent = institutionData.email;
+                
+                // Clear localStorage even if error
+                localStorage.removeItem('careerUttsavData');
+                
+                goToPage(4);
+            } finally {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
+        }
+
+        // Page navigation
+        function goToPage(pageNum) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(`page${pageNum}`).classList.add('active');
+            updateProgress(pageNum);
+            window.scrollTo(0, 0);
+        }
+
+        // Update progress bar
+        function updateProgress(currentPage = 1) {
+            document.querySelectorAll('.step').forEach((step, index) => {
+                step.classList.remove('active', 'completed');
+                if (index + 1 < currentPage) {
+                    step.classList.add('completed');
+                } else if (index + 1 === currentPage) {
+                    step.classList.add('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
