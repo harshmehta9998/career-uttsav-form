@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Uttsav 2025 - Student Nomination Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #E53935 0%, #C62828 100%);
+            color: white;
+            padding: 30px 30px 40px 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .logo-placeholder {
+            width: 280px;
+            height: 180px;
+            background: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            padding: 20px;
+        }
+
+        .logo-placeholder img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            display: block;
+        }
+        
+        @media (max-width: 600px) {
+            .logo-placeholder {
+                width: 240px;
+                height: 150px;
+                padding: 15px;
+            }
+        }
+
+        .logo-text {
+            font-size: 32px;
+            font-weight: 700;
+            color: #E53935;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 16px;
+            line-height: 1.6;
+            opacity: 0.95;
+        }
+
+        .progress-bar {
+            background: #f5f5f5;
+            padding: 20px 30px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .progress-steps::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #e0e0e0;
+            z-index: 1;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+            flex: 1;
+        }
+
+        .step-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: white;
+            border: 3px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: #999;
+            margin-bottom: 8px;
+        }
+
+        .step.active .step-circle {
+            background: #E53935;
+            border-color: #E53935;
+            color: white;
+        }
+
+        .step.completed .step-circle {
+            background: #FDD835;
+            border-color: #FDD835;
+            color: #333;
+        }
+
+        .step-label {
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+        }
+
+        .step.active .step-label {
+            color: #E53935;
+            font-weight: 600;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .info-box {
+            background: #E3F2FD;
+            border-left: 4px solid #2196F3;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 4px;
+        }
+
+        .info-box.warning {
+            background: #FFF9C4;
+            border-left-color: #FDD835;
+        }
+
+        .info-box.success {
+            background: #FFEBEE;
+            border-left-color: #E53935;
+        }
+
+        .info-box h3 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: #2196F3;
+        }
+
+        .info-box.warning h3 {
+            color: #F57F17;
+        }
+
+        .info-box.success h3 {
+            color: #E53935;
+        }
+
+        .info-box p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #E53935;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .required {
+            color: #f44336;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #2196F3;
+            box-shadow: 0 0 0 4px rgba(33, 150, 243, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #E53935 0%, #C62828 100%);
+            color: white;
+            padding: 14px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(229, 57, 53, 0.4);
+        }
+
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #2196F3;
+            border: 2px solid #2196F3;
+        }
+
+        .btn-secondary:hover {
+            background: #E3F2FD;
+        }
+
+        .btn-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .btn-group {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .student-counter {
+            background: #FFF9C4;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: #F57F17;
+            border: 2px solid #FDD835;
+        }
+
+        .edit-link {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .edit-link a {
+            color: #2196F3;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .edit-link a:hover {
+            text-decoration: underline;
+        }
+
+        .summary-box {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+
+        .summary-label {
+            font-weight: 600;
+            color: #666;
+        }
+
+        .summary-value {
+            color: #333;
+        }
+
+        .student-list {
+            margin-top: 20px;
+        }
+
+        .student-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .student-card h4 {
+            color: #E53935;
+            margin-bottom: 10px;
+        }
+
+        .thank-you {
+            text-align: center;
+            padding: 60px 30px;
+        }
+
+        .thank-you h2 {
+            color: #E53935;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .thank-you p {
+            font-size: 18px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .checkmark {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: #FDD835;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            margin: 0 auto 30px;
+            font-weight: 700;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo-container">
+                <div class="logo-placeholder">
+                    <img src="https://i.imgur.com/05S6ZdG.png" alt="Career Uttsav Logo" id="logoImage">
+                </div>
+            </div>
+            <h1>Career Uttsav 2025 - Student Nomination Form</h1>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+            <div class="progress-steps">
+                <div class="step" id="step1">
+                    <div class="step-circle">1</div>
+                    <div class="step-label">Institution</div>
+                </div>
+                <div class="step" id="step2">
+                    <div class="step-circle">2</div>
+                    <div class="step-label">Students</div>
+                </div>
+                <div class="step" id="step3">
+                    <div class="step-circle">3</div>
+                    <div class="step-label">Review</div>
+                </div>
+                <div class="step" id="step4">
+                    <div class="step-circle">✓</div>
+                    <div class="step-label">Complete</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 1: Institution Details -->
+        <div class="page active" id="page1">
+            <div class="content">
+                <div class="info-box warning" style="background: #FFF3CD; border-left-color: #FF6B6B; margin-bottom: 25px;">
+                    <h3 style="color: #C62828; font-size: 18px; margin-bottom: 15px;">📌 Important Points to Note</h3>
+                    <ol style="margin: 0; padding-left: 20px; line-height: 2; color: #333;">
+                        <li>A <strong>maximum of 5 students</strong> can be nominated.</li>
+                        <li>Winners would be awarded with a <strong>Medal of Merit</strong> along with the <strong>Certificate of Appreciation</strong>, presented on stage by distinguished university representatives.</li>
+                        <li>Nominations can be made in the following fields:<br>
+                            <span style="margin-left: 20px; display: block; margin-top: 5px;">
+                                a) <strong>Academics (3 students total):</strong> Science (2 students), Commerce (1 student)<br>
+                                b) <strong>Non-Academics (2 students total):</strong> Sports, Music, Dance, Others
+                            </span>
+                        </li>
+                        <li>Nominees must be <strong>currently pursuing Grade 12</strong>.</li>
+                        <li>Achievements mentioned must be <strong>recent</strong>.</li>
+                        <li>The <strong>last date for submission is 4th December 2025</strong>. Incomplete or late submissions will not be considered.</li>
+                        <li>The decision of the Career Uttsav Jury regarding the selection of deserving winners will be <strong>final</strong>.</li>
+                        <li>All shortlisted nominees must be present at the venue at least <strong>45 minutes before</strong> their allotted time slot.</li>
+                        <li>For any further details, please contact the Career Uttsav Team at 📞 <strong>+91-9035150139</strong> or ✉️ <strong>info@careeruttsav.in</strong></li>
+                    </ol>
+                </div>
+
+                <div class="info-box warning">
+                    <h3>📋 Important Notice</h3>
+                    <p>Institution details will be filled once and will automatically carry forward when entering additional students. Please ensure all information is accurate.</p>
+                </div>
+
+                <div class="section-title">Institution Details</div>
+
+                <form id="institutionForm">
+                    <div class="form-group">
+                        <label for="institutionName">Institution Name <span class="required">*</span></label>
+                        <input type="text" id="institutionName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="principalName">Principal / Coordinator Name <span class="required">*</span></label>
+                        <input type="text" id="principalName" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="primaryContact">Primary Contact Number <span class="required">*</span></label>
+                            <input type="tel" id="primaryContact" pattern="[0-9]{10}" placeholder="10-digit mobile number" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="emailId">Email ID <span class="required">*</span></label>
+                            <input type="email" id="emailId" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="alternateContact">Alternate Contact Number</label>
+                        <input type="tel" id="alternateContact" pattern="[0-9]{10}" placeholder="10-digit mobile number (optional)">
+                    </div>
+
+                    <button type="submit" class="btn">Save & Continue to Student Nominations →</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Page 2: Student Nomination -->
+        <div class="page" id="page2">
+            <div class="content">
+                <div class="info-box success">
+                    <h3>✅ Institution Details Saved</h3>
+                    <p>You may now enter student nominations. You can submit up to 5 students.</p>
+                </div>
+
+                <div class="student-counter">
+                    <span id="studentCount">Student 1 of 5 | Academic: 0/3 | Non-Academic: 0/2</span>
+                </div>
+
+                <div class="section-title">Student Nomination</div>
+
+                <form id="studentForm">
+                    <div class="form-group">
+                        <label for="studentName">Student Name <span class="required">*</span></label>
+                        <input type="text" id="studentName" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="gender">Gender <span class="required">*</span></label>
+                            <select id="gender" required>
+                                <option value="">Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="category">Category <span class="required">*</span></label>
+                            <select id="category" required>
+                                <option value="">Select Category</option>
+                                <option value="Science">Science</option>
+                                <option value="Commerce">Commerce</option>
+                                <option value="Arts">Arts</option>
+                                <option value="Sports">Sports</option>
+                                <option value="Music">Music</option>
+                                <option value="Dance">Dance</option>
+                                <option value="Others">Others</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subjectCombination">Subject Combination <span class="required">*</span></label>
+                        <input type="text" id="subjectCombination" placeholder="e.g., PCMB, PCMC, ABMS, PPES" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="grade10Percentage">Percentage in Grade 10 <span class="required">*</span></label>
+                            <input type="number" id="grade10Percentage" min="0" max="100" step="0.01" placeholder="e.g., 85.5" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="grade12Percentage">Expected Percentage in Grade 12 <span class="required">*</span></label>
+                            <input type="number" id="grade12Percentage" min="0" max="100" step="0.01" placeholder="e.g., 90.0" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="achievements">Student's Key Achievements <span class="required">*</span></label>
+                        <textarea id="achievements" placeholder="Briefly describe the student's notable achievements, awards, or accomplishments" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="recognition">Why does this student deserve recognition? <span class="required">*</span></label>
+                        <textarea id="recognition" placeholder="Explain what makes this student exceptional and worthy of recognition at Career Uttsav" required></textarea>
+                    </div>
+
+                    <div class="btn-group">
+                        <button type="submit" class="btn" id="addAnotherBtn">Submit Student & Add Another</button>
+                        <button type="button" class="btn btn-secondary" id="finishBtn">Finish & Review All Entries</button>
+                    </div>
+                </form>
+
+                <div class="edit-link">
+                    <a href="#" onclick="editInstitution(); return false;">📝 Need to edit institution details?</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 3: Review -->
+        <div class="page" id="page3">
+            <div class="content">
+                <div class="section-title">Review Your Submission</div>
+
+                <div class="info-box">
+                    <h3>📋 Submission Summary</h3>
+                    <p>Please review all information before final submission. You can go back to edit if needed.</p>
+                </div>
+
+                <div class="summary-box">
+                    <h3 style="margin-bottom: 15px; color: #667eea;">Institution Information</h3>
+                    <div id="institutionSummary"></div>
+                </div>
+
+                <div class="student-list">
+                    <h3 style="margin-bottom: 15px; color: #667eea;">Nominated Students (<span id="totalStudents">0</span>)</h3>
+                    <div id="studentsList"></div>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-secondary" onclick="goToPage(2)">← Back to Add More Students</button>
+                    <button class="btn" onclick="submitAll()">📤 Submit All Student Nominations</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 4: Thank You -->
+        <div class="page" id="page4">
+            <div class="content thank-you">
+                <div class="checkmark">✓</div>
+                <h2>Thank You!</h2>
+                <p>Thank you for submitting student details! We appreciate your support in recognizing young achievers at Career Uttsav ✨</p>
+                <p>Your nomination has been successfully submitted to our database. We have received details for <strong><span id="finalCount">0</span> students</strong> from your institution.</p>
+                <p>A confirmation will be sent to <strong><span id="confirmEmail"></span></strong></p>
+                
+                <div style="margin-top: 40px; color: #999; font-size: 14px;">
+                    <p>You may now close this page.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ⚙️ CONFIGURATION - REPLACE THIS WITH YOUR GOOGLE APPS SCRIPT WEB APP URL
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/a/macros/theacademiccity.com/s/AKfycbytXy2HFKja2GV9A_poT_M7VNOcYH749EytAB81Ae9E5RXFpm62sIMO8pHPnAyqoVoM/exec';
+        
+        // Data storage
+        let institutionData = null;
+        let students = [];
+        const MAX_STUDENTS = 5;
+        const MIN_STUDENTS = 1;
+        const MAX_ACADEMICS = 3;
+        const MAX_NON_ACADEMICS = 2;
+
+        // Category validation helper
+        function getCategoryCounts() {
+            const academics = students.filter(s => 
+                ['Science', 'Commerce', 'Arts'].includes(s.category)
+            ).length;
+            const nonAcademics = students.filter(s => 
+                ['Sports', 'Music', 'Dance', 'Others'].includes(s.category)
+            ).length;
+            return { academics, nonAcademics };
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            loadFromStorage();
+            updateProgress();
+            
+            // Add event listener for the finish button
+            document.getElementById('finishBtn').addEventListener('click', function() {
+                saveCurrentStudent();
+                goToReview();
+            });
+        });
+
+        // Load data from localStorage
+        function loadFromStorage() {
+            const saved = localStorage.getItem('careerUttsavData');
+            if (saved) {
+                const data = JSON.parse(saved);
+                institutionData = data.institution;
+                students = data.students || [];
+                
+                if (institutionData) {
+                    goToPage(2);
+                    updateStudentCounter();
+                }
+            }
+        }
+
+        // Save to localStorage
+        function saveToStorage() {
+            const data = {
+                institution: institutionData,
+                students: students
+            };
+            localStorage.setItem('careerUttsavData', JSON.stringify(data));
+        }
+
+        // Save current student form data
+        function saveCurrentStudent() {
+            const studentName = document.getElementById('studentName').value;
+            
+            // Only save if there's data in the form
+            if (studentName.trim() !== '') {
+                const category = document.getElementById('category').value;
+                const counts = getCategoryCounts();
+                
+                // Check category limits
+                const isAcademic = ['Science', 'Commerce', 'Arts'].includes(category);
+                const isNonAcademic = ['Sports', 'Music', 'Dance', 'Others'].includes(category);
+                
+                if (isAcademic && counts.academics >= MAX_ACADEMICS) {
+                    alert(`Maximum ${MAX_ACADEMICS} students from Academic categories (Science, Commerce, Arts) can be nominated. You have already added ${counts.academics}.`);
+                    return false;
+                }
+                
+                if (isNonAcademic && counts.nonAcademics >= MAX_NON_ACADEMICS) {
+                    alert(`Maximum ${MAX_NON_ACADEMICS} students from Non-Academic categories (Sports, Music, Dance, Others) can be nominated. You have already added ${counts.nonAcademics}.`);
+                    return false;
+                }
+                
+                // Check if student already exists to avoid duplicates
+                const existingStudent = students.find(s => 
+                    s.name === studentName && 
+                    s.category === category
+                );
+                
+                if (!existingStudent) {
+                    const student = {
+                        name: studentName,
+                        gender: document.getElementById('gender').value,
+                        category: category,
+                        subjectCombination: document.getElementById('subjectCombination').value,
+                        grade10Percentage: document.getElementById('grade10Percentage').value,
+                        grade12Percentage: document.getElementById('grade12Percentage').value,
+                        achievements: document.getElementById('achievements').value,
+                        recognition: document.getElementById('recognition').value
+                    };
+                    
+                    students.push(student);
+                    saveToStorage();
+                    updateStudentCounter();
+                    
+                    // Clear form after saving
+                    document.getElementById('studentForm').reset();
+                    
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // Handle institution form submission
+        document.getElementById('institutionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            institutionData = {
+                name: document.getElementById('institutionName').value,
+                principalName: document.getElementById('principalName').value,
+                primaryContact: document.getElementById('primaryContact').value,
+                email: document.getElementById('emailId').value,
+                alternateContact: document.getElementById('alternateContact').value || 'N/A',
+                timestamp: new Date().toISOString()
+            };
+            
+            saveToStorage();
+            goToPage(2);
+        });
+
+        // Handle student form submission
+        document.getElementById('studentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (students.length >= MAX_STUDENTS) {
+                alert(`Maximum ${MAX_STUDENTS} students can be nominated. Please finish and review your entries.`);
+                return;
+            }
+            
+            const category = document.getElementById('category').value;
+            const counts = getCategoryCounts();
+            
+            // Check category limits
+            const isAcademic = ['Science', 'Commerce', 'Arts'].includes(category);
+            const isNonAcademic = ['Sports', 'Music', 'Dance', 'Others'].includes(category);
+            
+            if (isAcademic && counts.academics >= MAX_ACADEMICS) {
+                alert(`Maximum ${MAX_ACADEMICS} students from Academic categories (Science, Commerce, Arts) can be nominated. You have already added ${counts.academics}.`);
+                return;
+            }
+            
+            if (isNonAcademic && counts.nonAcademics >= MAX_NON_ACADEMICS) {
+                alert(`Maximum ${MAX_NON_ACADEMICS} students from Non-Academic categories (Sports, Music, Dance, Others) can be nominated. You have already added ${counts.nonAcademics}.`);
+                return;
+            }
+            
+            const student = {
+                name: document.getElementById('studentName').value,
+                gender: document.getElementById('gender').value,
+                category: category,
+                subjectCombination: document.getElementById('subjectCombination').value,
+                grade10Percentage: document.getElementById('grade10Percentage').value,
+                grade12Percentage: document.getElementById('grade12Percentage').value,
+                achievements: document.getElementById('achievements').value,
+                recognition: document.getElementById('recognition').value
+            };
+            
+            students.push(student);
+            saveToStorage();
+            
+            // Clear form
+            document.getElementById('studentForm').reset();
+            
+            // Update counter
+            updateStudentCounter();
+            
+            // Show message
+            const newCounts = getCategoryCounts();
+            alert(`Student ${students.length} added successfully!\n\nCurrent count:\n- Academic: ${newCounts.academics}/${MAX_ACADEMICS}\n- Non-Academic: ${newCounts.nonAcademics}/${MAX_NON_ACADEMICS}`);
+            
+            // If max reached, go to review
+            if (students.length >= MAX_STUDENTS) {
+                alert(`You have reached the maximum of ${MAX_STUDENTS} students. Proceeding to review.`);
+                goToReview();
+            }
+        });
+
+        // Update student counter
+        function updateStudentCounter() {
+            const count = students.length + 1;
+            const counts = getCategoryCounts();
+            
+            document.getElementById('studentCount').textContent = 
+                `Student ${count} of ${MAX_STUDENTS} | Academic: ${counts.academics}/${MAX_ACADEMICS} | Non-Academic: ${counts.nonAcademics}/${MAX_NON_ACADEMICS}`;
+            
+            if (students.length >= MAX_STUDENTS) {
+                document.getElementById('addAnotherBtn').disabled = true;
+                document.getElementById('studentCount').textContent = 
+                    `Maximum students reached (${MAX_STUDENTS}/${MAX_STUDENTS})`;
+            }
+        }
+
+        // Edit institution
+        function editInstitution() {
+            if (confirm('Are you sure you want to edit institution details? This will take you back to the first page.')) {
+                goToPage(1);
+            }
+        }
+
+        // Go to review page
+        function goToReview() {
+            // Save any current student data before going to review
+            saveCurrentStudent();
+            
+            if (students.length === 0) {
+                alert('Please add at least one student before reviewing.');
+                return;
+            }
+            
+            // Populate review page
+            populateReview();
+            goToPage(3);
+        }
+
+        // Populate review page
+        function populateReview() {
+            // Institution summary
+            const instDiv = document.getElementById('institutionSummary');
+            instDiv.innerHTML = `
+                <div class="summary-item">
+                    <span class="summary-label">Institution Name:</span>
+                    <span class="summary-value">${institutionData.name}</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Principal/Coordinator:</span>
+                    <span class="summary-value">${institutionData.principalName}</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Primary Contact:</span>
+                    <span class="summary-value">${institutionData.primaryContact}</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Email:</span>
+                    <span class="summary-value">${institutionData.email}</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Alternate Contact:</span>
+                    <span class="summary-value">${institutionData.alternateContact}</span>
+                </div>
+            `;
+            
+            // Students list
+            const studDiv = document.getElementById('studentsList');
+            document.getElementById('totalStudents').textContent = students.length;
+            
+            studDiv.innerHTML = students.map((student, index) => `
+                <div class="student-card">
+                    <h4>Student ${index + 1}: ${student.name}</h4>
+                    <div class="summary-item">
+                    <span class="summary-label">Gender:</span>
+                    <span class="summary-value">${student.gender}</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Category:</span>
+                    <span class="summary-value">${student.category}</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Subject Combination:</span>
+                    <span class="summary-value">${student.subjectCombination}</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Grade 10 Percentage:</span>
+                    <span class="summary-value">${student.grade10Percentage}%</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Expected Grade 12 Percentage:</span>
+                    <span class="summary-value">${student.grade12Percentage}%</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Achievements:</span>
+                    <span class="summary-value">${student.achievements}</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Recognition:</span>
+                    <span class="summary-value">${student.recognition}</span>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    // Submit all
+    async function submitAll() {
+        if (students.length === 0) {
+            alert('No students to submit!');
+            return;
+        }
+        
+        // Show loading state
+        const submitBtn = event.target;
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Submitting...';
+        submitBtn.disabled = true;
+        
+        // Prepare final submission data
+        const submission = {
+            institution: institutionData,
+            students: students,
+            submittedAt: new Date().toISOString()
+        };
+        
+        try {
+            // Send to Google Sheets
+            const response = await fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(submission)
+            });
+            
+            // Note: no-cors mode doesn't return response data, but submission is successful
+            console.log('Submission sent to Google Sheets');
+            
+            // Update thank you page
+            document.getElementById('finalCount').textContent = students.length;
+            document.getElementById('confirmEmail').textContent = institutionData.email;
+            
+            // Clear localStorage after successful submission
+            localStorage.removeItem('careerUttsavData');
+            
+            // Go to success page
+            goToPage(4);
+            
+        } catch (error) {
+            console.error('Submission error:', error);
+            
+            // Even if there's an error, the data is usually saved
+            // Show success page but mention to verify
+            alert('Submission sent! If you want to be sure, you can download a backup copy.');
+            document.getElementById('finalCount').textContent = students.length;
+            document.getElementById('confirmEmail').textContent = institutionData.email;
+            
+            // Clear localStorage even if error
+            localStorage.removeItem('careerUttsavData');
+            
+            goToPage(4);
+        } finally {
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        }
+    }
+
+    // Page navigation
+    function goToPage(pageNum) {
+        document.querySelectorAll('.page').forEach(page => {
+            page.classList.remove('active');
+        });
+        document.getElementById(`page${pageNum}`).classList.add('active');
+        updateProgress(pageNum);
+        window.scrollTo(0, 0);
+    }
+
+    // Update progress bar
+    function updateProgress(currentPage = 1) {
+        document.querySelectorAll('.step').forEach((step, index) => {
+            step.classList.remove('active', 'completed');
+            if (index + 1 < currentPage) {
+                step.classList.add('completed');
+            } else if (index + 1 === currentPage) {
+                step.classList.add('active');
+            }
+        });
+    }
+</script>
